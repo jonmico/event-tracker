@@ -2,3 +2,17 @@
   margin: 0;
   padding: 0;
 }
+
+/* https://realtimecolors.com/?colors=180f02-fefbf5-4587f2-e3bcfa-0f5ddb */
+:root {
+  --text: #180f02;
+  --background: #fefbf5;
+  --primary: #4587f2;
+  --secondary: #e3bcfa;
+  --accent: #0f5ddb;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+}
