@@ -19,5 +19,5 @@ async function connectDB() {
 connectDB();
 
 app.listen(PORT, () => {
-  console.log(`app is listening on port ${3000}`);
+  console.log(`app is listening on port ${PORT}`);
 });
