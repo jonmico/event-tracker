@@ -9,10 +9,10 @@ const eventSchema = new Schema(
     date: { type: Date, required: true },
     author: { type: String, required: true },
     maxAttending: { type: Number, default: 40 },
-    attendingList: [userSchema],
+    attendingList: { type: [userSchema] },
     isWaitlist: { type: Boolean, required: true },
-    maxWaitlist: Number,
-    waitlist: [userSchema],
+    maxWaitlist: { type: Number },
+    waitlist: { type: [userSchema] },
   },
   { timestamps: true }
 );
