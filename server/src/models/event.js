@@ -13,6 +13,6 @@ const eventSchema = new Schema({
   waitlist: [UserSchema],
 });
 
-const Event = mongoose.model('Event', eventSchema);
+const EventModel = mongoose.model('Event', eventSchema);
 
 export default Event;
