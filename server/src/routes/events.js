@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import AppError from '../AppError.js';
+import validateEvent from '../middleware/validateEvent.js';
+import EventModel from '../models/event.js';
 
 const router = Router();
 
@@ -7,9 +8,12 @@ router.get('/', (req, res, next) => {
   res.send('get');
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', validateEvent, (req, res, next) => {
   try {
-    throw new AppError(402, 'huh');
+    const newEvent = new EventModel(req.body);
+    newEvent.save();
+    console.log(newEvent);
+    res.send(newEvent);
   } catch (err) {
     next(err);
   }
