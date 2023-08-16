@@ -35,7 +35,10 @@ export async function editUser(req, res, next) {
   try {
     const { id } = req.params;
     const { firstName, lastName, email, phone, organization } = req.body;
+
     const updatedUser = await UserModel.findById(id);
+
+    if (!updatedUser) throw new AppError(404, 'User not found.');
 
     updatedUser.firstName = firstName.toLowerCase();
     updatedUser.lastName = lastName.toLowerCase();
@@ -47,9 +50,20 @@ export async function editUser(req, res, next) {
 
     await updatedUser.save();
 
-    console.log(updatedUser);
-
     res.json(updatedUser);
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function deleteUser(req, res, next) {
+  try {
+    const { id } = req.params;
+    const deletedUser = await UserModel.findByIdAndDelete(id);
+
+    if (!deletedUser) throw new AppError(404, 'User not found.');
+
+    res.status(204).json({});
   } catch (err) {
     next(err);
   }
