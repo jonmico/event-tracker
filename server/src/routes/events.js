@@ -2,6 +2,8 @@ import { Router } from 'express';
 import validateEvent from '../middleware/validateEvent.js';
 import EventModel from '../models/event.js';
 
+const router = Router();
+
 import {
   createEvent,
   deleteEvent,
@@ -11,8 +13,6 @@ import {
 } from '../controllers/events.js';
 
 import AppError from '../AppError.js';
-
-const router = Router();
 
 router.get('/', getEvents);
 

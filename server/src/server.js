@@ -4,6 +4,7 @@ import cors from 'cors';
 import 'dotenv/config';
 
 import eventsRouter from './routes/events.js';
+import userRouter from './routes/user.js';
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/events', eventsRouter);
+app.use('/api/user', userRouter);
 
 async function connectDB() {
   try {
