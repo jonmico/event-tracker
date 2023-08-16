@@ -30,3 +30,27 @@ export async function getUser(req, res, next) {
     next(err);
   }
 }
+
+export async function editUser(req, res, next) {
+  try {
+    const { id } = req.params;
+    const { firstName, lastName, email, phone, organization } = req.body;
+    const updatedUser = await UserModel.findById(id);
+
+    updatedUser.firstName = firstName.toLowerCase();
+    updatedUser.lastName = lastName.toLowerCase();
+    updatedUser.email = email.toLowerCase();
+    updatedUser.phone = phone;
+    updatedUser.organization = organization
+      ? organization.toLowerCase()
+      : undefined;
+
+    await updatedUser.save();
+
+    console.log(updatedUser);
+
+    res.json(updatedUser);
+  } catch (err) {
+    next(err);
+  }
+}
