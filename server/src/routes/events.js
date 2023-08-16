@@ -4,6 +4,7 @@ import EventModel from '../models/event.js';
 
 import {
   createEvent,
+  deleteEvent,
   editEvent,
   getEvent,
   getEvents,
@@ -20,5 +21,7 @@ router.get('/:id', getEvent);
 router.post('/', validateEvent, createEvent);
 
 router.put('/:id', validateEvent, editEvent);
+
+router.delete('/:id', deleteEvent);
 
 export default router;

@@ -46,3 +46,16 @@ export async function editEvent(req, res, next) {
     next(err);
   }
 }
+
+export async function deleteEvent(req, res, next) {
+  try {
+    const { id } = req.params;
+    const deletedEvent = await EventModel.findByIdAndDelete(id);
+
+    if (!deletedEvent) throw new AppError(404, 'Event not found.');
+
+    res.status(204).json({});
+  } catch (err) {
+    next(err);
+  }
+}
