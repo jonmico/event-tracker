@@ -1,7 +1,4 @@
 import { Router } from 'express';
-import validateEvent from '../middleware/validateEvent.js';
-
-const router = Router();
 
 import {
   createEvent,
@@ -11,8 +8,9 @@ import {
   getEvents,
   filterEvents,
 } from '../controllers/events.js';
+import validateEvent from '../middleware/validateEvent.js';
 
-import AppError from '../AppError.js';
+const router = Router();
 
 router.get('/search', filterEvents);
 
