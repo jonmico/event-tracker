@@ -9,9 +9,12 @@ import {
   editEvent,
   getEvent,
   getEvents,
+  filterEvents,
 } from '../controllers/events.js';
 
 import AppError from '../AppError.js';
+
+router.get('/search', filterEvents);
 
 router.get('/', getEvents);
 

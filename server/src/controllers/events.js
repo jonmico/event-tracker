@@ -22,6 +22,17 @@ export async function getEvent(req, res, next) {
   }
 }
 
+export async function filterEvents(req, res, next) {
+  const name = req.query.name;
+
+  if (name) {
+    const events = await EventModel.find({ name: { $regex: name } });
+    res.json(events);
+  } else {
+    res.json('No events found.');
+  }
+}
+
 export async function createEvent(req, res, next) {
   try {
     const newEvent = new EventModel(req.body);
