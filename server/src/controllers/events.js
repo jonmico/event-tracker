@@ -2,7 +2,7 @@ import EventModel from '../models/event.js';
 
 export async function getEvents(req, res, next) {
   try {
-    const events = await EventModel.find({}).exec();
+    const events = await EventModel.find({}).populate('author').exec();
     res.json(events);
   } catch (err) {
     next(err);
@@ -12,8 +12,9 @@ export async function getEvents(req, res, next) {
 export async function getEvent(req, res, next) {
   try {
     const { id } = req.params;
-    const event = await EventModel.findById(id).exec();
-
+    const event = await EventModel.findById(id)
+      .populate('attendingList')
+      .exec();
     if (!event) throw new AppError(404, 'Event not found.');
 
     res.json(event);
@@ -77,4 +78,10 @@ export async function deleteEvent(req, res, next) {
   } catch (err) {
     next(err);
   }
+}
+
+export async function addUserToEvent(req, res, next) {
+  const { eventId, userId } = req.params;
+  console.log(eventId, userId);
+  res.json(eventId, userId);
 }

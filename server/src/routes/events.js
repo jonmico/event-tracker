@@ -7,6 +7,7 @@ import {
   getEvent,
   getEvents,
   filterEvents,
+  addUserToEvent,
 } from '../controllers/events.js';
 import validateEvent from '../middleware/validateEvent.js';
 
@@ -19,6 +20,8 @@ router.get('/', getEvents);
 router.get('/:id', getEvent);
 
 router.post('/', validateEvent, createEvent);
+
+router.post('/:eventId/:userId', addUserToEvent);
 
 router.put('/:id', validateEvent, editEvent);
 
