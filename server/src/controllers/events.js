@@ -110,6 +110,10 @@ export async function addUserToEvent(req, res, next) {
       }
       //check if waitlist is full
       if (event.waitlist.length === event.maxWaitlist) {
+        throw new AppError(
+          403,
+          'Both the attendingList and waitlist are full.'
+        );
       }
       //if waitlist is not full, push onto waitlist
       event.waitlist.push(userId);
