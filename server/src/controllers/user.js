@@ -9,7 +9,7 @@ export async function createUser(req, res, next) {
       lastName: lastName.toLowerCase(),
       email: email.toLowerCase(),
       phone,
-      organization: organization.toLowerCase(),
+      organization: organization?.toLowerCase(),
     });
     await newUser.save();
     res.json(newUser);

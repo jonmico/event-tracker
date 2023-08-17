@@ -8,6 +8,7 @@ import {
   getEvents,
   filterEvents,
   addUserToEvent,
+  removeUserFromEvent,
 } from '../controllers/events.js';
 import validateEvent from '../middleware/validateEvent.js';
 
@@ -26,5 +27,7 @@ router.post('/:eventId/:userId', addUserToEvent);
 router.put('/:id', validateEvent, editEvent);
 
 router.delete('/:id', deleteEvent);
+
+router.delete('/:eventId/:userId', removeUserFromEvent);
 
 export default router;

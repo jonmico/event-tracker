@@ -36,7 +36,14 @@ app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;
   if (!err.message) err.message = 'Something went wrong.';
 
-  res.status(statusCode).send(err);
+  console.error(err);
+
+  const errResponse = {
+    message: err.message,
+    statusCode,
+  };
+
+  res.status(statusCode).json(errResponse);
 });
 
 app.listen(PORT, () => {

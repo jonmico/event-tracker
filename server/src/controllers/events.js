@@ -14,11 +14,7 @@ export async function getEvents(req, res, next) {
 export async function getEvent(req, res, next) {
   try {
     const { id } = req.params;
-    const event = await EventModel.findById(id)
-      .populate('author')
-      .populate('attendingList')
-      .populate('waitlist')
-      .exec();
+    const event = await EventModel.findById(id).exec();
     if (!event) throw new AppError(404, 'Event not found.');
 
     res.json(event);
@@ -89,6 +85,8 @@ export async function addUserToEvent(req, res, next) {
     const { eventId, userId } = req.params;
     const event = await EventModel.findById(eventId).exec();
 
+    if (!event) throw new AppError(404, 'Event not found.');
+
     //check if user is in list
     if (
       event.attendingList.includes(userId) ||
@@ -123,7 +121,7 @@ export async function addUserToEvent(req, res, next) {
       event.attendingList.push(userId);
     }
 
-    const user = await UserModel.findById(userId);
+    const user = await UserModel.findById(userId).exec();
 
     //if user was added to attendingList, add event to attending events for user
     if (event.attendingList.includes(userId)) {
@@ -138,6 +136,52 @@ export async function addUserToEvent(req, res, next) {
 
     console.log(event);
     res.json(event);
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function removeUserFromEvent(req, res, next) {
+  try {
+    const { eventId, userId } = req.params;
+    const event = await EventModel.findById(eventId).exec();
+
+    if (!event) throw new AppError(404, 'Event not found.');
+
+    if (
+      !event.attendingList.includes(userId) &&
+      !event.waitlist.includes(userId)
+    ) {
+      throw new AppError(
+        404,
+        'User is not registered for this event or does not exist.'
+      );
+    }
+
+    //check if the user is on attendingList and filter user out
+    if (event.attendingList.includes(userId)) {
+      event.attendingList.pull(userId);
+    } else {
+      event.waitlist.pull(userId);
+    }
+
+    const user = await UserModel.findById(userId).exec();
+
+    if (!user) throw new AppError(404, 'User not found.');
+
+    //check which list user has the event on, filter event out
+    if (user.attendingEvents.includes(eventId)) {
+      user.attendingEvents.pull(eventId);
+    } else {
+      user.waitlistedEvents.pull(eventId);
+    }
+
+    await user.save();
+    await event.save();
+
+    //TODO: figure out how to check if an attendingList was full and had a waitlist, then pull the first user from the waitlist and move them into the last position of the attendingList
+
+    res.status(204).json({});
   } catch (err) {
     next(err);
   }
