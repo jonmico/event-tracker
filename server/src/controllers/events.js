@@ -35,7 +35,11 @@ export async function filterEvents(req, res, next) {
 
 export async function createEvent(req, res, next) {
   try {
-    const newEvent = new EventModel(req.body);
+    const newEvent = new EventModel({
+      ...req.body,
+      name: req.body.name.toLowerCase(),
+    });
+
     await newEvent.save();
     res.status(201).json(newEvent);
   } catch (err) {
@@ -46,9 +50,13 @@ export async function createEvent(req, res, next) {
 export async function editEvent(req, res, next) {
   try {
     const { id } = req.params;
-    const event = await EventModel.findByIdAndUpdate(id, req.body, {
-      new: true,
-    }).exec();
+    const event = await EventModel.findByIdAndUpdate(
+      id,
+      { ...req.body, name: req.body.name.toLowerCase() },
+      {
+        new: true,
+      }
+    ).exec();
 
     if (!event) throw new AppError(404, 'Event not found');
 
