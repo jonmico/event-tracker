@@ -7,6 +7,8 @@ export const userSchema = new Schema({
   email: { type: String, required: true },
   phone: { type: String, required: true },
   organization: { type: String },
+  attendingEvents: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
+  waitlistedEvents: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
 });
 
 const UserModel = mongoose.model('User', userSchema);

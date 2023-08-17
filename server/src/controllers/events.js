@@ -1,5 +1,6 @@
 import AppError from '../AppError.js';
 import EventModel from '../models/event.js';
+import UserModel from '../models/user.js';
 
 export async function getEvents(req, res, next) {
   try {
@@ -122,6 +123,17 @@ export async function addUserToEvent(req, res, next) {
       event.attendingList.push(userId);
     }
 
+    const user = await UserModel.findById(userId);
+
+    //if user was added to attendingList, add event to attending events for user
+    if (event.attendingList.includes(userId)) {
+      user.attendingEvents.push(event._id);
+    } else {
+      //opposite case
+      user.waitlistedEvents.push(event._id);
+    }
+
+    await user.save();
     await event.save();
 
     console.log(event);
