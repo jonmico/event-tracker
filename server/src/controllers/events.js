@@ -158,9 +158,18 @@ export async function removeUserFromEvent(req, res, next) {
       );
     }
 
-    //check if the user is on attendingList and filter user out
+    //check which list the user is on and pull user out
     if (event.attendingList.includes(userId)) {
       event.attendingList.pull(userId);
+
+      //checking if waitlist length is truthy (nonzero value)
+      if (event.waitlist.length) {
+        //getting ID of waitlist at position 0
+        const id = event.waitlist.at(0);
+        //pulling from waitlist and pushing onto attendingList
+        event.waitlist.pull(id);
+        event.attendingList.push(id);
+      }
     } else {
       event.waitlist.pull(userId);
     }
@@ -169,7 +178,7 @@ export async function removeUserFromEvent(req, res, next) {
 
     if (!user) throw new AppError(404, 'User not found.');
 
-    //check which list user has the event on, filter event out
+    //check which list user has the event on, pull event out
     if (user.attendingEvents.includes(eventId)) {
       user.attendingEvents.pull(eventId);
     } else {
@@ -179,7 +188,9 @@ export async function removeUserFromEvent(req, res, next) {
     await user.save();
     await event.save();
 
-    //TODO: figure out how to check if an attendingList was full and had a waitlist, then pull the first user from the waitlist and move them into the last position of the attendingList
+    //TODO: figure out how to check if an attendingList was full and had a waitlist,
+    //then pull the first user from the waitlist and move them into the last position
+    //of the attendingList
 
     res.status(204).json({});
   } catch (err) {
