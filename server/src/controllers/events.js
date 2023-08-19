@@ -133,8 +133,6 @@ export async function addUserToEvent(req, res, next) {
 
     await user.save();
     await event.save();
-
-    console.log(event);
     res.json(event);
   } catch (err) {
     next(err);
