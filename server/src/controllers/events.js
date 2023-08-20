@@ -24,13 +24,27 @@ export async function getEvent(req, res, next) {
 }
 
 export async function filterEvents(req, res, next) {
-  const name = req.query.name;
+  try {
+    const name = req.query.name;
+    const keywords = req.query.keywords;
 
-  if (name) {
-    const events = await EventModel.find({ name: { $regex: name } });
-    res.json(events);
-  } else {
-    res.json('No events found.');
+    if (name) {
+      const events = await EventModel.find({ name: { $regex: name } });
+
+      if (!events) throw new AppError(404, 'No events found.');
+
+      res.json(events);
+    }
+
+    if (keywords) {
+      const events = await EventModel.find({ keywords: keywords });
+
+      if (!events) throw new AppError(404, 'No events found.');
+
+      res.json(events);
+    }
+  } catch (err) {
+    next(err);
   }
 }
 
