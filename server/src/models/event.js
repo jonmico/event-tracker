@@ -13,6 +13,14 @@ const eventSchema = new Schema(
     isWaitlist: { type: Boolean, required: true },
     maxWaitlist: { type: Number },
     waitlist: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    location: {
+      name: { type: String },
+      position: {
+        lat: { type: Number },
+        lng: { type: Number },
+      },
+    },
+    keywords: { type: [String] },
   },
   { timestamps: true }
 );

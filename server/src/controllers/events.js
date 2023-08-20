@@ -186,10 +186,6 @@ export async function removeUserFromEvent(req, res, next) {
     await user.save();
     await event.save();
 
-    //TODO: figure out how to check if an attendingList was full and had a waitlist,
-    //then pull the first user from the waitlist and move them into the last position
-    //of the attendingList
-
     res.status(204).json({});
   } catch (err) {
     next(err);
