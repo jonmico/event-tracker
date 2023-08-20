@@ -1,7 +1,13 @@
+import { BrowserRouter } from 'react-router-dom';
+
+import Navbar from './components/Navbar/Navbar';
+
 export default function App() {
   return (
     <div>
-      <h1>Hello from Event Tracker</h1>
+      <BrowserRouter>
+        <Navbar />
+      </BrowserRouter>
     </div>
   );
 }

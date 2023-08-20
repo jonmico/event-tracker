@@ -43,6 +43,20 @@ export async function filterEvents(req, res, next) {
 
       res.json(events);
     }
+
+    // TODO:
+    // find different ways to filter events. add option to filter events
+    // by alphabetical order, by date etc. make it so you can pull events
+    // on front end and filter those on the front end, but also pull
+    // events with the filter already applied.
+    // for example: i go to the page of events with 20 or so events loaded.
+    // by default, they would be ordered in alphabetical a-z order. however,
+    // if click "name" to filter from z-a it would repull. if i search for
+    // a name, and then i filter from z-a, it should only filter what i have
+    // filtered by name.
+    // do i pull all events for a name and load them into state, then only
+    // display 20 at a time?
+    // is all filtering just handled on front end?
   } catch (err) {
     next(err);
   }
