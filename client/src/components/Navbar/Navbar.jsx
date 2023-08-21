@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import styles from './Navbar.module.css';
 
@@ -7,15 +7,21 @@ export default function Navbar() {
     <div className={styles.navbarWrapper}>
       <nav className={styles.navbar}>
         <div>
-          <NavLink className={`${styles.link} ${styles.main}`}>
+          <Link to={'/'} className={`${styles.link} ${styles.main}`}>
             Event Tracker
-          </NavLink>
+          </Link>
         </div>
         <div>
           <div>
-            <NavLink className={styles.link}>Sign Up</NavLink>
-            <NavLink className={styles.link}>Login</NavLink>
-            <NavLink className={styles.link}>Not Sure Yet</NavLink>
+            <NavLink to={'/signup'} className={styles.link}>
+              Sign Up
+            </NavLink>
+            <NavLink to={'/login'} className={styles.link}>
+              Login
+            </NavLink>
+            <NavLink to={'/not'} className={styles.link}>
+              Not Sure Yet
+            </NavLink>
           </div>
         </div>
       </nav>
