@@ -15,7 +15,7 @@
   text-decoration: none;
   color: var(--text);
   margin-left: 2.5rem;
-  transition: color 0.15s ease-in-out;
+  transition: color 0.1s ease-in-out;
 }
 
 .link:hover {
