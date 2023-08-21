@@ -3,6 +3,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 /* https://realtimecolors.com/?colors=180f02-fefbf5-4587f2-e3bcfa-0f5ddb */
@@ -12,13 +13,13 @@
   --primary: #4587f2;
   --secondary: #e3bcfa;
   --accent: #0f5ddb;
+  --error: #fe0000;
 }
 
 body {
   background-color: var(--background);
   color: var(--text);
   font-family: 'Ubuntu', sans-serif;
-  box-sizing: border-box;
 }
 
 .mainWrapper {

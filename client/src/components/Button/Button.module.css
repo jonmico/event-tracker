@@ -16,3 +16,9 @@
 .button:active {
   background-color: var(--accent);
 }
+
+.submitButton {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  width: 100%;
+}
