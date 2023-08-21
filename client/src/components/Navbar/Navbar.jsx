@@ -13,9 +13,9 @@ export default function Navbar() {
         </div>
         <div>
           <div>
-            <NavLink className={`${styles.link}`}>Sign Up</NavLink>
-            <NavLink className={`${styles.link}`}>Login</NavLink>
-            <NavLink className={`${styles.link}`}>Not Sure Yet</NavLink>
+            <NavLink className={styles.link}>Sign Up</NavLink>
+            <NavLink className={styles.link}>Login</NavLink>
+            <NavLink className={styles.link}>Not Sure Yet</NavLink>
           </div>
         </div>
       </nav>
