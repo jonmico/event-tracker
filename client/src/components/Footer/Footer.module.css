@@ -3,3 +3,12 @@
   padding: 1.5rem 0;
   text-align: center;
 }
+
+.link {
+  color: var(--background);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

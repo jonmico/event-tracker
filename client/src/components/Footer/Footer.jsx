@@ -4,7 +4,13 @@ export default function Footer() {
   return (
     <div className={styles.footer}>
       <footer>
-        I do not know how to move this to the bottom of the screen.
+        Just for fun. Check out the repository{' '}
+        <a
+          className={styles.link}
+          href={'https://github.com/jonmico/event-tracker'}
+        >
+          here.
+        </a>
       </footer>
     </div>
   );
