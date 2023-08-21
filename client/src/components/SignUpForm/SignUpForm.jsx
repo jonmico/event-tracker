@@ -7,7 +7,7 @@ import FormTextInput from '../FormTextInput/FormTextInput';
 
 export default function SignUpForm() {
   const [firstName, setFirstName] = useState('');
-  const [firstNameError, setFirstNameError] = useState('what');
+  const [firstNameError, setFirstNameError] = useState('');
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -15,7 +15,8 @@ export default function SignUpForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <h1>Create an account</h1>
       <FormTextInput
         label={'First Name'}
         state={firstName}

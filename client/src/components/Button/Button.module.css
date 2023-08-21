@@ -5,6 +5,7 @@
   padding: 0.75em 2em;
   border-radius: 5px;
   color: var(--text);
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .button:hover {
