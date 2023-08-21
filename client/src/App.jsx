@@ -7,14 +7,14 @@ import Footer from './components/Footer/Footer';
 
 export default function App() {
   return (
-    <div>
-      <BrowserRouter>
+    <BrowserRouter>
+      <div className={'appWrapper'}>
         <Navbar />
         <Routes>
           <Route index element={<Index />} />
         </Routes>
-        {/* <Footer /> */}
-      </BrowserRouter>
-    </div>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }

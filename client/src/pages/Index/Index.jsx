@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import Button from '../../components/Button/Button';
-
 import styles from './Index.module.css';
 
 export default function Index() {

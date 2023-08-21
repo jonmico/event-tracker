@@ -18,10 +18,17 @@ body {
   background-color: var(--background);
   color: var(--text);
   font-family: 'Ubuntu', sans-serif;
-  color: var(--text);
 }
 
 .mainWrapper {
   width: 80%;
   margin: auto;
+  flex: 1;
+  padding-bottom: 2rem;
+}
+
+.appWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
