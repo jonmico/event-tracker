@@ -11,7 +11,9 @@ export default function Index() {
           An easy to use, all-in-one app to create and keep track of events
         </h2>
         <div className={styles.linkWrapper}>
-          <Link className={styles.link}>Sign Up</Link>
+          <Link to={'signup'} className={styles.link}>
+            Sign Up
+          </Link>
           <Link className={styles.link}>Browse Events</Link>
         </div>
       </div>
