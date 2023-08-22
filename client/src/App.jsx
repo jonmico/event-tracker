@@ -5,6 +5,7 @@ import Index from './pages/Index/Index';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import SignUp from './pages/SignUp/SignUp';
+import Events from './pages/Events/Events';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Routes>
           <Route index element={<Index />} />
           <Route element={<SignUp />} path={'signup'} />
+          <Route element={<Events />} path={'events'} />
         </Routes>
         <Footer />
       </div>

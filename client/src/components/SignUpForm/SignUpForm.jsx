@@ -35,7 +35,7 @@ export default function SignUpForm() {
 
     if (!phone) setPhoneError('Required field.');
 
-    if (firstNameError || lastNameError || emailError || phoneError) return;
+    if (!firstName || !lastName || !email || !phone) return;
 
     const newUser = {
       firstName,

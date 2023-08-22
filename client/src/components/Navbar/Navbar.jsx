@@ -19,8 +19,8 @@ export default function Navbar() {
             <NavLink to={'/login'} className={styles.link}>
               Login
             </NavLink>
-            <NavLink to={'/not'} className={styles.link}>
-              Not Sure Yet
+            <NavLink to={'/events'} className={styles.link}>
+              Browse Events
             </NavLink>
           </div>
         </div>
