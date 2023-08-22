@@ -8,7 +8,7 @@ export default function Index() {
       <div className={styles.indexWrapper}>
         <h1>Welcome to Event Tracker</h1>
         <h2>
-          An easy to use, all-in-one app to create and keep track of events
+          An easy to use, all-in-one app to create and keep track of events.
         </h2>
         <div className={styles.linkWrapper}>
           <Link to={'signup'} className={styles.link}>

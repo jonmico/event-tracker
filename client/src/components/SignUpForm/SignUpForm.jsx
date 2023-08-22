@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
 import Button from '../Button/Button';
+import FormTextInput from '../FormTextInput/FormTextInput';
 
 import styles from './SignUpForm.module.css';
-import FormTextInput from '../FormTextInput/FormTextInput';
+
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
 export default function SignUpForm() {
   const [firstName, setFirstName] = useState('');
@@ -20,7 +22,7 @@ export default function SignUpForm() {
 
   const [organization, setOrganization] = useState('');
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
 
     if (!firstName) setFirstNameError('Required field.');
@@ -30,6 +32,26 @@ export default function SignUpForm() {
     if (!email) setEmailError('Required field.');
 
     if (!phone) setPhoneError('Required field.');
+
+    if (firstNameError || lastNameError || emailError || phoneError) return;
+
+    const newUser = {
+      firstName,
+      lastName,
+      email,
+      phone,
+    };
+
+    const res = await fetch(`${BASE_URL}/api/user`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newUser),
+    });
+    const data = await res.json();
+
+    console.log(data);
   }
 
   return (
