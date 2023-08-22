@@ -18,3 +18,7 @@
   border-bottom: 1px solid var(--accent);
   margin-bottom: 0.5rem;
 }
+
+.error {
+  color: var(--error);
+}

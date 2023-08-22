@@ -22,6 +22,8 @@ export default function SignUpForm() {
 
   const [organization, setOrganization] = useState('');
 
+  const [submitError, setSubmitError] = useState('');
+
   async function handleSubmit(evt) {
     evt.preventDefault();
 
@@ -42,21 +44,36 @@ export default function SignUpForm() {
       phone,
     };
 
-    const res = await fetch(`${BASE_URL}/api/user`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newUser),
-    });
-    const data = await res.json();
+    try {
+      const res = await fetch(`${BASE_URL}/api/user`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUser),
+      });
 
-    console.log(data);
+      if (!res.ok) {
+        throw new Error(`Oops! Request failed with status code: ${res.status}`);
+      }
+
+      const data = await res.json();
+      console.log(data);
+
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPhone('');
+      if (organization) setOrganization('');
+    } catch (err) {
+      setSubmitError(err.message);
+    }
   }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h1>Create an account</h1>
+      {submitError && <p className={styles.error}>{submitError}</p>}
       <FormTextInput
         forId={'firstName'}
         label={'First Name'}
