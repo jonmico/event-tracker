@@ -4,10 +4,9 @@ import EventItem from '../EventItem/EventItem';
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
-export default function EventList() {
+export default function EventList({ setEventListError }) {
   const [eventList, setEventList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [eventListError, setEventListError] = useState('');
 
   useEffect(() => {
     async function fetchEvents() {
@@ -19,7 +18,9 @@ export default function EventList() {
         });
 
         if (!res.ok) {
-          throw new Error(`Oops! Looks like there was an error: ${res.status}`);
+          throw new Error(
+            'Uh-oh. Something went wrong when fetching events. Please try again later.'
+          );
         }
         const data = await res.json();
         setEventList(data);
@@ -33,11 +34,11 @@ export default function EventList() {
     fetchEvents();
   }, []);
 
-  return (
-    <div>
-      {eventList.map((event) => (
-        <EventItem key={event._id}>{event.name}</EventItem>
-      ))}
-    </div>
+  const list = eventList.length ? (
+    eventList.map((event) => <EventItem event={event} key={event._id} />)
+  ) : (
+    <p>Uh-oh, it seems there are no events at the moment!</p>
   );
+
+  return <div>{isLoading ? <p>Loading...</p> : list}</div>;
 }
