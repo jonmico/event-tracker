@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 
 import EventItem from '../EventItem/EventItem';
 
+import styles from './EventList.module.css';
+
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
 export default function EventList({ setEventListError }) {
@@ -32,10 +34,18 @@ export default function EventList({ setEventListError }) {
   }, [setEventListError]);
 
   const list = eventList.length ? (
-    eventList.map((event) => <EventItem event={event} key={event._id} />)
+    <ul className={styles.eventList}>
+      {eventList.map((event) => (
+        <EventItem event={event} key={event._id} />
+      ))}
+    </ul>
   ) : (
     <p>Uh-oh, it seems there are no events at the moment!</p>
   );
 
-  return <div>{isLoading ? <p>Loading...</p> : list}</div>;
+  return (
+    <div className={styles.eventListWrapper}>
+      {isLoading ? <p>Loading...</p> : list}
+    </div>
+  );
 }

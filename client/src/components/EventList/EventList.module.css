@@ -1,0 +1,9 @@
+.eventListWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.eventList {
+  list-style: none;
+}

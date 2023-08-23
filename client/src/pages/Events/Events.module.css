@@ -1,0 +1,10 @@
+.title {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.listError {
+  text-align: center;
+  color: var(--error);
+  margin-top: 2rem;
+}

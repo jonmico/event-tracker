@@ -4,7 +4,7 @@ import UserModel from '../models/user.js';
 
 export async function getEvents(req, res, next) {
   try {
-    const events = await EventModel.find({}).exec();
+    const events = await EventModel.find({}).populate('author').exec();
     res.json(events);
   } catch (err) {
     next(err);
