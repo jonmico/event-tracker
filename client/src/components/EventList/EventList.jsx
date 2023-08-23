@@ -18,13 +18,10 @@ export default function EventList({ setEventListError }) {
         });
 
         if (!res.ok) {
-          throw new Error(
-            'Uh-oh. Something went wrong when fetching events. Please try again later.'
-          );
+          throw new Error(`Something went wrong: ${res.status} error.`);
         }
         const data = await res.json();
         setEventList(data);
-        console.log(data);
       } catch (err) {
         setEventListError(err.message);
       } finally {
@@ -32,7 +29,7 @@ export default function EventList({ setEventListError }) {
       }
     }
     fetchEvents();
-  }, []);
+  }, [setEventListError]);
 
   const list = eventList.length ? (
     eventList.map((event) => <EventItem event={event} key={event._id} />)
