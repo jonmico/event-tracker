@@ -5,6 +5,8 @@ import EventList from '../../components/EventList/EventList';
 
 import styles from './Events.module.css';
 
+// TODO: Redo this page. Maybe add some type of navigation menu for it.
+
 export default function Events() {
   const [eventListError, setEventListError] = useState('');
 
