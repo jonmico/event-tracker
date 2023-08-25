@@ -7,6 +7,7 @@ import Footer from './components/Footer/Footer';
 import SignUp from './pages/SignUp/SignUp';
 import Events from './pages/Events/Events';
 import CreateEventForm from './components/CreateEventForm/CreateEventForm';
+import EventList from './components/EventList/EventList';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           <Route index element={<Index />} />
           <Route element={<SignUp />} path={'signup'} />
           <Route element={<Events />} path={'events'}>
+            <Route element={<EventList />} path={'browse'} />
             <Route element={<CreateEventForm />} path={'create'} />
           </Route>
         </Routes>
