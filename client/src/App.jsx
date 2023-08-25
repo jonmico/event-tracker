@@ -1,13 +1,13 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Index from './pages/Index/Index';
-
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
 import SignUp from './pages/SignUp/SignUp';
 import Events from './pages/Events/Events';
+
 import CreateEventForm from './components/CreateEventForm/CreateEventForm';
 import EventList from './components/EventList/EventList';
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
 
 export default function App() {
   return (
@@ -18,6 +18,7 @@ export default function App() {
           <Route index element={<Index />} />
           <Route element={<SignUp />} path={'signup'} />
           <Route element={<Events />} path={'events'}>
+            <Route index element={<Navigate replace to={'browse'} />} />
             <Route element={<EventList />} path={'browse'} />
             <Route element={<CreateEventForm />} path={'create'} />
           </Route>

@@ -14,7 +14,7 @@ export default function Index() {
           <Link to={'signup'} className={styles.link}>
             Sign Up
           </Link>
-          <Link to={'events'} className={styles.link}>
+          <Link to={'events/browse'} className={styles.link}>
             Browse Events
           </Link>
         </div>

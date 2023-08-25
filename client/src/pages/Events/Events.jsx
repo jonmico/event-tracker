@@ -18,6 +18,7 @@ export default function Events() {
         <p className={styles.listError}>{eventListError}</p>
       )} */}
       <Link to={'create'}>Create Event</Link>
+      <Link to={'browse'}>Browse Events</Link>
     </div>
   );
 }
