@@ -1,0 +1,20 @@
+.linkList {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.listItem {
+  margin: 0 1rem;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.link:hover {
+  text-decoration: underline;
+}

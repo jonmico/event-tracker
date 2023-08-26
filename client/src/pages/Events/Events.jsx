@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
-import EventList from '../../components/EventList/EventList';
+import EventNavbar from '../../components/EventNavbar/EventNavbar';
 
 import styles from './Events.module.css';
 
@@ -12,6 +12,7 @@ export default function Events() {
 
   return (
     <div className={'mainWrapper'}>
+      <EventNavbar />
       <Outlet />
       {/* <h1 className={styles.title}>Browse Events</h1>
       {!eventListError ? (
@@ -19,8 +20,6 @@ export default function Events() {
       ) : (
         <p className={styles.listError}>{eventListError}</p>
       )} */}
-      <Link to={'create'}>Create Event</Link>
-      <Link to={'browse'}>Browse Events</Link>
     </div>
   );
 }
