@@ -1,9 +1,5 @@
 .eventListWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-top: 1rem;
-  background-color: var(--secondary);
+  width: 100%;
 }
 
 .eventList {
@@ -12,7 +8,7 @@
 
 .title {
   /* text-align: center; */
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--accent);
 }

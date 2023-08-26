@@ -1,13 +1,10 @@
 .linkList {
   list-style-type: none;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1rem 0;
+  flex-direction: column;
 }
 
 .listItem {
-  margin: 0 1rem;
 }
 
 .link {
@@ -17,4 +14,8 @@
 
 .link:hover {
   text-decoration: underline;
+}
+
+.eventNav {
+  width: 25%;
 }

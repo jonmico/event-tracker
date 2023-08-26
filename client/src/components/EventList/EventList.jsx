@@ -45,12 +45,10 @@ export default function EventList() {
   );
 
   return (
-    <div>
-      <h1 className={styles.title}>Browse</h1>
+    <div className={styles.eventListWrapper}>
+      <h2 className={styles.title}>Browse</h2>
       {!eventListError ? (
-        <div className={styles.eventListWrapper}>
-          {isLoading ? <p>Loading...</p> : list}
-        </div>
+        <div>{isLoading ? <p>Loading...</p> : list}</div>
       ) : (
         <p className={styles.listError}>{eventListError}</p>
       )}

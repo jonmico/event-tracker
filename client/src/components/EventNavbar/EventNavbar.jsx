@@ -4,8 +4,10 @@ import styles from './EventNavbar.module.css';
 
 export default function EventNavbar() {
   return (
-    <nav>
+    <nav className={styles.eventNav}>
+      <h2>Events</h2>
       <ul className={styles.linkList}>
+        <li></li>
         <li className={styles.listItem}>
           <Link className={styles.link} to={'create'}>
             Create Event
