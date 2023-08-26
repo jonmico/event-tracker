@@ -6,9 +6,10 @@ import styles from './EventList.module.css';
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
-export default function EventList({ setEventListError }) {
+export default function EventList() {
   const [eventList, setEventList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [eventListError, setEventListError] = useState('');
 
   useEffect(() => {
     async function fetchEvents() {
@@ -31,7 +32,7 @@ export default function EventList({ setEventListError }) {
       }
     }
     fetchEvents();
-  }, [setEventListError]);
+  }, []);
 
   const list = eventList.length ? (
     <ul className={styles.eventList}>
@@ -44,8 +45,15 @@ export default function EventList({ setEventListError }) {
   );
 
   return (
-    <div className={styles.eventListWrapper}>
-      {isLoading ? <p>Loading...</p> : list}
+    <div>
+      <h1 className={styles.title}>Browse</h1>
+      {!eventListError ? (
+        <div className={styles.eventListWrapper}>
+          {isLoading ? <p>Loading...</p> : list}
+        </div>
+      ) : (
+        <p className={styles.listError}>{eventListError}</p>
+      )}
     </div>
   );
 }
