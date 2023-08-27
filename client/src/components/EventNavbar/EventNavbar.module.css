@@ -4,9 +4,6 @@
   flex-direction: column;
 }
 
-.listItem {
-}
-
 .link {
   text-decoration: none;
   color: var(--accent);
