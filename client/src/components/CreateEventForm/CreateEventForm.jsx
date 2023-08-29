@@ -7,6 +7,8 @@ import Button from '../Button/Button';
 
 import styles from './CreateEventForm.module.css';
 
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
+
 export default function CreateEventForm() {
   const [name, setName] = useState('');
   const [nameError, setNameError] = useState('');
@@ -29,12 +31,15 @@ export default function CreateEventForm() {
 
   const [maxWaitlist, setMaxWaitlist] = useState('');
 
+  const [submitError, setSubmitError] = useState('');
+
   function clearError(stateFn) {
     stateFn('');
   }
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
+    if (submitError) setSubmitError('');
     if (!name) setNameError('Required field.');
 
     if (!date) setDateError('Required field.');
@@ -45,6 +50,8 @@ export default function CreateEventForm() {
 
     if (!location) setLocationError('Required field.');
 
+    if (!name || !date || !time || !keywords || !location) return;
+
     if (keywords === 'all') {
       setKeywords(['children', 'teen', 'adult']);
     }
@@ -53,19 +60,49 @@ export default function CreateEventForm() {
       name,
       date,
       time,
-      location,
-      maxAttendees,
+      location: { name: location },
+      maxAttendees: maxAttendees ? maxAttendees : 40,
       keywords,
       isWaitlist,
-      maxWaitlist,
+      maxWaitlist: maxWaitlist ? maxWaitlist : undefined,
+      author: '64ee41e4da7b253fa7473834',
     };
 
     console.log(newEvent);
+
+    try {
+      const res = await fetch(`${BASE_URL}/api/events`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newEvent),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Oops! Request failed with status code: ${res.status}`);
+      }
+
+      const data = await res.json();
+      console.log(data);
+
+      setName('');
+      setDate('');
+      setTime('');
+      setLocation('');
+      setMaxAttendees('');
+      setKeywords('');
+      setIsWaitlist(false);
+      if (maxWaitlist) setMaxWaitlist('');
+    } catch (err) {
+      setSubmitError(err.message);
+    }
   }
 
   return (
     <form onSubmit={handleSubmit} className={styles.createEventForm}>
       <h1 className={styles.title}>Create Event</h1>
+      {submitError && <p className={styles.error}>{submitError}</p>}
       <div className={styles.formRow}>
         <div className={styles.formInputWrapper}>
           <label className={styles.label} htmlFor='name'>
@@ -190,6 +227,7 @@ export default function CreateEventForm() {
           <div className={styles.formInputWrapper}>
             <label htmlFor='maxWaitlist'>Max Waitlist</label>
             <input
+              placeholder={'Not required.'}
               value={maxWaitlist}
               onChange={(evt) => setMaxWaitlist(evt.target.value)}
               type='text'

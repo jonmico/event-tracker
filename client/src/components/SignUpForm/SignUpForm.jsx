@@ -26,7 +26,7 @@ export default function SignUpForm() {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-
+    if (submitError) setSubmitError('');
     if (!firstName) setFirstNameError('Required field.');
 
     if (!lastName) setLastNameError('Required field.');
