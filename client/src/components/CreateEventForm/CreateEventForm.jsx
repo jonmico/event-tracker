@@ -17,6 +17,9 @@ export default function CreateEventForm() {
   const [time, setTime] = useState('');
   const [timeError, setTimeError] = useState('');
 
+  const [location, setLocation] = useState('');
+  const [locationError, setLocationError] = useState('');
+
   const [maxAttendees, setMaxAttendees] = useState('');
 
   const [keywords, setKeywords] = useState('');
@@ -31,6 +34,7 @@ export default function CreateEventForm() {
     setDateError('OH MY LORD');
     setTimeError('OH MY JESUS');
     setKeywordsError('uh');
+    setLocationError('WHAT IN TARNATION');
   }
 
   return (
@@ -44,7 +48,7 @@ export default function CreateEventForm() {
           <input
             value={name}
             onChange={(evt) => setName(evt.target.value)}
-            className={styles.input}
+            className={`${styles.input} ${nameError ? styles.inputError : ''}`}
             type='text'
             id={'name'}
           />
@@ -57,7 +61,7 @@ export default function CreateEventForm() {
           <input
             value={date}
             onChange={(evt) => setDate(evt.target.value)}
-            className={styles.input}
+            className={`${styles.input} ${dateError ? styles.inputError : ''}`}
             type='date'
             id={'date`'}
           />
@@ -70,7 +74,7 @@ export default function CreateEventForm() {
           <input
             value={time}
             onChange={(evt) => setTime(evt.target.value)}
-            className={styles.input}
+            className={`${styles.input} ${timeError ? styles.inputError : ''}`}
             type='time'
             id={'time'}
           />
@@ -78,6 +82,20 @@ export default function CreateEventForm() {
         </div>
       </div>
       <div className={styles.formRow}>
+        <div className={styles.formInputWrapper}>
+          <label htmlFor='location' className={styles.label}>
+            Location
+          </label>
+          <input
+            value={location}
+            onChange={(evt) => evt.target.value}
+            type='text'
+            className={`${styles.input} ${
+              locationError ? styles.inputError : ''
+            }`}
+          />
+          {locationError && <p className={styles.error}>{locationError}</p>}
+        </div>
         <div className={styles.formInputWrapper}>
           <label className={styles.label} htmlFor='maxAttending'>
             Max Attendees
@@ -98,7 +116,9 @@ export default function CreateEventForm() {
           <select
             value={keywords}
             onChange={(evt) => setKeywords(evt.target.value)}
-            className={styles.input}
+            className={`${styles.input} ${
+              keywordsError ? styles.inputError : ''
+            }`}
             id='keywords'
           >
             <option value='select'>Select</option>
