@@ -29,14 +29,38 @@ export default function CreateEventForm() {
 
   const [maxWaitlist, setMaxWaitlist] = useState('');
 
+  function clearError(stateFn) {
+    stateFn('');
+  }
+
   function handleSubmit(evt) {
     evt.preventDefault();
+    if (!name) setNameError('Required field.');
 
-    setNameError('OH MY GOD');
-    setDateError('OH MY LORD');
-    setTimeError('OH MY JESUS');
-    setKeywordsError('uh');
-    setLocationError('WHAT IN TARNATION');
+    if (!date) setDateError('Required field.');
+
+    if (!time) setTimeError('Required field.');
+
+    if (!keywords) setKeywordsError('Required field.');
+
+    if (!location) setLocationError('Required field.');
+
+    if (keywords === 'all') {
+      setKeywords(['children', 'teen', 'adult']);
+    }
+
+    const newEvent = {
+      name,
+      date,
+      time,
+      location,
+      maxAttendees,
+      keywords,
+      isWaitlist,
+      maxWaitlist,
+    };
+
+    console.log(newEvent);
   }
 
   return (
@@ -49,7 +73,10 @@ export default function CreateEventForm() {
           </label>
           <input
             value={name}
-            onChange={(evt) => setName(evt.target.value)}
+            onChange={(evt) => {
+              if (nameError) clearError(setNameError);
+              setName(evt.target.value);
+            }}
             className={`${styles.input} ${nameError ? styles.inputError : ''}`}
             type='text'
             id={'name'}
@@ -62,7 +89,10 @@ export default function CreateEventForm() {
           </label>
           <input
             value={date}
-            onChange={(evt) => setDate(evt.target.value)}
+            onChange={(evt) => {
+              if (dateError) clearError(setDateError);
+              setDate(evt.target.value);
+            }}
             className={`${styles.input} ${dateError ? styles.inputError : ''}`}
             type='date'
             id={'date`'}
@@ -75,7 +105,10 @@ export default function CreateEventForm() {
           </label>
           <input
             value={time}
-            onChange={(evt) => setTime(evt.target.value)}
+            onChange={(evt) => {
+              if (timeError) clearError(setTimeError);
+              setTime(evt.target.value);
+            }}
             className={`${styles.input} ${timeError ? styles.inputError : ''}`}
             type='time'
             id={'time'}
@@ -90,7 +123,10 @@ export default function CreateEventForm() {
           </label>
           <input
             value={location}
-            onChange={(evt) => setLocation(evt.target.value)}
+            onChange={(evt) => {
+              if (locationError) clearError(setLocationError);
+              setLocation(evt.target.value);
+            }}
             type='text'
             className={`${styles.input} ${
               locationError ? styles.inputError : ''
@@ -117,7 +153,10 @@ export default function CreateEventForm() {
           </label>
           <select
             value={keywords}
-            onChange={(evt) => setKeywords(evt.target.value)}
+            onChange={(evt) => {
+              if (keywordsError) clearError(setKeywordsError);
+              setKeywords(evt.target.value);
+            }}
             className={`${styles.input} ${
               keywordsError ? styles.inputError : ''
             }`}
