@@ -2,24 +2,32 @@
 // filter by author.
 
 import { useState } from 'react';
-import FormTextInput from '../FormTextInput/FormTextInput';
 import styles from './CreateEventForm.module.css';
 
 export default function CreateEventForm() {
-  const [name, setName] = useState('');
-  const [nameError, setNameError] = useState('');
-
   return (
     <form className={styles.createEventForm}>
       <h1 className={styles.title}>Create Event</h1>
-      <FormTextInput
-        forId={'name'}
-        label={'Name'}
-        state={name}
-        setState={setName}
-        error={nameError}
-        setError={setNameError}
-      />
+      <div className={styles.formRow1}>
+        <div>
+          <label className={styles.label} htmlFor='eventName'>
+            Event Name
+          </label>
+          <input className={styles.input} type='text' id={'eventName'} />
+        </div>
+        <div>
+          <label className={styles.label} htmlFor='date'>
+            Date
+          </label>
+          <input className={styles.input} type='date' />
+        </div>
+        <div>
+          <label className={styles.label} htmlFor='time'>
+            Time
+          </label>
+          <input className={styles.input} type='time' />
+        </div>
+      </div>
     </form>
   );
 }
