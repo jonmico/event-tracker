@@ -42,6 +42,7 @@ export default function SignUpForm() {
       lastName,
       email,
       phone,
+      organization: organization ? organization : undefined,
     };
 
     try {
