@@ -27,6 +27,8 @@ export default function CreateEventForm() {
 
   const [isWaitlist, setIsWaitlist] = useState(false);
 
+  const [maxWaitlist, setMaxWaitlist] = useState('');
+
   function handleSubmit(evt) {
     evt.preventDefault();
 
@@ -88,7 +90,7 @@ export default function CreateEventForm() {
           </label>
           <input
             value={location}
-            onChange={(evt) => evt.target.value}
+            onChange={(evt) => setLocation(evt.target.value)}
             type='text'
             className={`${styles.input} ${
               locationError ? styles.inputError : ''
@@ -105,7 +107,7 @@ export default function CreateEventForm() {
             value={maxAttendees}
             onChange={(evt) => setMaxAttendees(evt.target.value)}
             className={styles.input}
-            type='number'
+            type='text'
             id={'maxAttending'}
           />
         </div>
@@ -121,7 +123,7 @@ export default function CreateEventForm() {
             }`}
             id='keywords'
           >
-            <option value='select'>Select</option>
+            <option value=''>Select</option>
             <option value='children'>Children</option>
             <option value='teen'>Teen</option>
             <option value='adult'>Adult</option>
@@ -130,7 +132,7 @@ export default function CreateEventForm() {
           {keywordsError && <p className={styles.error}>{keywordsError}</p>}
         </div>
       </div>
-      <div>
+      <div className={styles.formRow}>
         <div className={styles.checkboxWrapper}>
           <label className={styles.label} htmlFor='isWaitlist'>
             Waitlist?
@@ -144,6 +146,20 @@ export default function CreateEventForm() {
           />
         </div>
       </div>
+      {isWaitlist && (
+        <div className={styles.formRow}>
+          <div className={styles.formInputWrapper}>
+            <label htmlFor='maxWaitlist'>Max Waitlist</label>
+            <input
+              value={maxWaitlist}
+              onChange={(evt) => setMaxWaitlist(evt.target.value)}
+              type='text'
+              className={styles.input}
+              id={'maxWaitlist'}
+            />
+          </div>
+        </div>
+      )}
       <div>
         <Button buttonStyle={'createEventButton'}>Create Event</Button>
       </div>
