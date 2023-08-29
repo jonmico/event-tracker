@@ -8,8 +8,13 @@ import Button from '../Button/Button';
 import styles from './CreateEventForm.module.css';
 
 export default function CreateEventForm() {
+  const [eventName, setEventName] = useState('');
+  const [eventNameError, setEventNameError] = useState('');
+
   function handleSubmit(evt) {
     evt.preventDefault();
+
+    setEventNameError('OH MY GOD');
   }
 
   return (
@@ -20,7 +25,14 @@ export default function CreateEventForm() {
           <label className={styles.label} htmlFor='eventName'>
             Event Name
           </label>
-          <input className={styles.input} type='text' id={'eventName'} />
+          <input
+            value={eventName}
+            onChange={(evt) => setEventName(evt.target.value)}
+            className={styles.input}
+            type='text'
+            id={'eventName'}
+          />
+          {eventNameError && <p className={styles.error}>{eventNameError}</p>}
         </div>
         <div>
           <label className={styles.label} htmlFor='date'>
