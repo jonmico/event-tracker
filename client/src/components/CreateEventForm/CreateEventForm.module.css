@@ -42,4 +42,16 @@
   display: flex;
   gap: 1.5rem;
   margin-top: 1rem;
+  align-items: center;
+}
+
+.checkboxWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.checkbox {
+  height: 25px;
+  width: 25px;
 }

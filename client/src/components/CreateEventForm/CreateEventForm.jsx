@@ -2,11 +2,18 @@
 // filter by author.
 
 import { useState } from 'react';
+
+import Button from '../Button/Button';
+
 import styles from './CreateEventForm.module.css';
 
 export default function CreateEventForm() {
+  function handleSubmit(evt) {
+    evt.preventDefault();
+  }
+
   return (
-    <form className={styles.createEventForm}>
+    <form onSubmit={handleSubmit} className={styles.createEventForm}>
       <h1 className={styles.title}>Create Event</h1>
       <div className={styles.formRow}>
         <div>
@@ -19,7 +26,7 @@ export default function CreateEventForm() {
           <label className={styles.label} htmlFor='date'>
             Date
           </label>
-          <input className={styles.input} type='date' id={'date'} />
+          <input className={styles.input} type='date' id={'date`'} />
         </div>
         <div>
           <label className={styles.label} htmlFor='time'>
@@ -30,13 +37,38 @@ export default function CreateEventForm() {
       </div>
       <div className={styles.formRow}>
         <div>
-          <label htmlFor='maxAttending'>Max Attendees</label>
+          <label className={styles.label} htmlFor='maxAttending'>
+            Max Attendees
+          </label>
           <input className={styles.input} type='number' id={'maxAttending'} />
         </div>
         <div>
-          <label htmlFor='isWaitlist'>Waitlist</label>
-          <input className={styles.input} type='checkbox' id={'isWaitlist'} />
+          <label className={styles.label} htmlFor='keywords'>
+            Keywords
+          </label>
+          <select className={styles.input} id='keywords'>
+            <option value='select'>Select</option>
+            <option value='children'>Children</option>
+            <option value='teen'>Teen</option>
+            <option value='adult'>Adult</option>
+            <option value='all'>All</option>
+          </select>
         </div>
+      </div>
+      <div>
+        <div className={styles.checkboxWrapper}>
+          <label className={styles.label} htmlFor='isWaitlist'>
+            Waitlist?
+          </label>
+          <input
+            className={styles.checkbox}
+            type='checkbox'
+            id={'isWaitlist'}
+          />
+        </div>
+      </div>
+      <div>
+        <Button buttonStyle={'createEventButton'}>Create Event</Button>
       </div>
     </form>
   );
