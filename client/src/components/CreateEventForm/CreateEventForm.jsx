@@ -8,63 +8,106 @@ import Button from '../Button/Button';
 import styles from './CreateEventForm.module.css';
 
 export default function CreateEventForm() {
-  const [eventName, setEventName] = useState('');
-  const [eventNameError, setEventNameError] = useState('');
+  const [name, setName] = useState('');
+  const [nameError, setNameError] = useState('');
+
+  const [date, setDate] = useState('');
+  const [dateError, setDateError] = useState('');
+
+  const [time, setTime] = useState('');
+  const [timeError, setTimeError] = useState('');
+
+  const [maxAttendees, setMaxAttendees] = useState('');
+
+  const [keywords, setKeywords] = useState('');
+  const [keywordsError, setKeywordsError] = useState('');
+
+  const [isWaitlist, setIsWaitlist] = useState(false);
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    setEventNameError('OH MY GOD');
+    setNameError('OH MY GOD');
+    setDateError('OH MY LORD');
+    setTimeError('OH MY JESUS');
+    setKeywordsError('uh');
   }
 
   return (
     <form onSubmit={handleSubmit} className={styles.createEventForm}>
       <h1 className={styles.title}>Create Event</h1>
       <div className={styles.formRow}>
-        <div>
-          <label className={styles.label} htmlFor='eventName'>
+        <div className={styles.formInputWrapper}>
+          <label className={styles.label} htmlFor='name'>
             Event Name
           </label>
           <input
-            value={eventName}
-            onChange={(evt) => setEventName(evt.target.value)}
+            value={name}
+            onChange={(evt) => setName(evt.target.value)}
             className={styles.input}
             type='text'
-            id={'eventName'}
+            id={'name'}
           />
-          {eventNameError && <p className={styles.error}>{eventNameError}</p>}
+          {nameError && <p className={styles.error}>{nameError}</p>}
         </div>
-        <div>
+        <div className={styles.formInputWrapper}>
           <label className={styles.label} htmlFor='date'>
             Date
           </label>
-          <input className={styles.input} type='date' id={'date`'} />
+          <input
+            value={date}
+            onChange={(evt) => setDate(evt.target.value)}
+            className={styles.input}
+            type='date'
+            id={'date`'}
+          />
+          {dateError && <p className={styles.error}>{dateError}</p>}
         </div>
-        <div>
+        <div className={styles.formInputWrapper}>
           <label className={styles.label} htmlFor='time'>
             Time
           </label>
-          <input className={styles.input} type='time' id={'time'} />
+          <input
+            value={time}
+            onChange={(evt) => setTime(evt.target.value)}
+            className={styles.input}
+            type='time'
+            id={'time'}
+          />
+          {timeError && <p className={styles.error}>{timeError}</p>}
         </div>
       </div>
       <div className={styles.formRow}>
-        <div>
+        <div className={styles.formInputWrapper}>
           <label className={styles.label} htmlFor='maxAttending'>
             Max Attendees
           </label>
-          <input className={styles.input} type='number' id={'maxAttending'} />
+          <input
+            placeholder={40}
+            value={maxAttendees}
+            onChange={(evt) => setMaxAttendees(evt.target.value)}
+            className={styles.input}
+            type='number'
+            id={'maxAttending'}
+          />
         </div>
-        <div>
+        <div className={styles.formInputWrapper}>
           <label className={styles.label} htmlFor='keywords'>
             Keywords
           </label>
-          <select className={styles.input} id='keywords'>
+          <select
+            value={keywords}
+            onChange={(evt) => setKeywords(evt.target.value)}
+            className={styles.input}
+            id='keywords'
+          >
             <option value='select'>Select</option>
             <option value='children'>Children</option>
             <option value='teen'>Teen</option>
             <option value='adult'>Adult</option>
             <option value='all'>All</option>
           </select>
+          {keywordsError && <p className={styles.error}>{keywordsError}</p>}
         </div>
       </div>
       <div>
@@ -73,6 +116,8 @@ export default function CreateEventForm() {
             Waitlist?
           </label>
           <input
+            checked={isWaitlist}
+            onChange={() => setIsWaitlist((current) => !current)}
             className={styles.checkbox}
             type='checkbox'
             id={'isWaitlist'}
