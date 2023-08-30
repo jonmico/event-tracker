@@ -6,7 +6,7 @@ export default function EventItem({ event }) {
 
   return (
     <li className={styles.listItem}>
-      <h2 className={styles.listItemData}>{event.name}</h2>
+      <h3 className={styles.listItemData}>{event.name}</h3>
       <p className={styles.listItemData}>{event.location.name}</p>
       <p className={styles.listItemData}>
         {date.toLocaleString('en-US', {
