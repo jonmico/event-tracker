@@ -21,10 +21,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #9babb8;
 }
 
 .eventHeaderItem {
   text-align: center;
+  /* text-decoration: underline; */
   width: 100%;
 }

@@ -20,10 +20,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .eventItemData {
   width: 100%;
   text-align: center;
   flex-wrap: wrap;
+}
+
+.dropDownData {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  padding: 1rem;
+}
+
+.eventName {
+}
+
+.selected {
 }
