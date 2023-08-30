@@ -47,6 +47,12 @@ export default function EventList() {
   return (
     <div className={styles.eventListWrapper}>
       <h1 className={styles.title}>Browse</h1>
+
+      <div className={styles.eventHeader}>
+        <h2 className={styles.eventHeaderItem}>Name</h2>
+        <h2 className={styles.eventHeaderItem}>Location</h2>
+        <h2 className={styles.eventHeaderItem}>Date</h2>
+      </div>
       {!eventListError ? (
         <div>{isLoading ? <p>Loading...</p> : list}</div>
       ) : (

@@ -4,3 +4,13 @@
   align-items: center;
   margin-top: 0.5rem;
 }
+
+.listItemData {
+  width: 100%;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+/* .listItemName {
+  text-align: start;
+} */

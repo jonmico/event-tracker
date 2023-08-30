@@ -16,3 +16,15 @@
   color: var(--error);
   margin-top: 2rem;
 }
+
+.eventHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 0.5rem 1rem; */
+}
+
+.eventHeaderItem {
+  text-align: center;
+  width: 100%;
+}
