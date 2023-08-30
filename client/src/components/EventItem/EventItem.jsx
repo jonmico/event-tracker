@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import styles from './EventItem.module.css';
 
+// TODO: Work on dropdown button. Find out how to not mess up the layout
+// Consider getting rid of goofy Name, Location, Date header and adding
+// filter options below the Events Nav on the left?
+
 export default function EventItem({ event }) {
   const [isDroppedDown, setIsDroppedDown] = useState(false);
 
