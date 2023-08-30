@@ -8,6 +8,7 @@ const eventSchema = new Schema(
     name: { type: String, required: true },
     date: { type: Date, required: true },
     author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    time: { type: String, required: true },
     maxAttending: { type: Number, default: 40 },
     attendingList: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     isWaitlist: { type: Boolean, required: true },
