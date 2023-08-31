@@ -48,11 +48,11 @@ export default function EventList() {
     <div className={styles.eventListWrapper}>
       <h1 className={styles.title}>Browse</h1>
 
-      <div className={styles.eventHeader}>
+      {/* <div className={styles.eventHeader}>
         <h2 className={styles.eventHeaderItem}>Name</h2>
         <h2 className={styles.eventHeaderItem}>Location</h2>
         <h2 className={styles.eventHeaderItem}>Date</h2>
-      </div>
+      </div> */}
       {!eventListError ? (
         <div>{isLoading ? <p>Loading...</p> : list}</div>
       ) : (

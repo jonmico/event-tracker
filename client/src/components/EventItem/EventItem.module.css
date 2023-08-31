@@ -10,9 +10,9 @@
 }
 
 .listItem:hover {
-  border: 2px solid var(--accent);
+  border: 2px solid var(--text);
   cursor: pointer;
-  background-color: var(--primary);
+  background-color: var(--accent);
   color: var(--background);
 }
 
@@ -38,8 +38,11 @@
   padding: 1rem;
 }
 
-.eventName {
+.dropDownIcon {
+  margin-left: 1rem;
 }
 
 .selected {
+  background-color: var(--primary);
+  /* color: var(--background); */
 }

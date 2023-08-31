@@ -1,4 +1,11 @@
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCaretRight,
+  faCaretDown,
+  faPlus,
+  faMinus,
+} from '@fortawesome/free-solid-svg-icons';
 import styles from './EventItem.module.css';
 
 // TODO: Work on dropdown button. Find out how to not mess up the layout
@@ -16,11 +23,26 @@ export default function EventItem({ event }) {
   }
 
   return (
-    <li className={styles.listItem}>
+    <li
+      onClick={handleClick}
+      className={`${styles.listItem} ${isDroppedDown ? styles.selected : ''}`}
+    >
       <div className={styles.eventItem}>
-        <span onClick={handleClick} className={styles.toggleButton}>
-          {isDroppedDown ? '-' : '+'}
-        </span>
+        <div className={styles.dropDownIcon}>
+          {!isDroppedDown ? (
+            <FontAwesomeIcon
+              icon={faPlus}
+              // size={'sm'}
+              // style={{ color: '#180f02' }}
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={faMinus}
+              // size='sm'
+              // style={{ color: '#180f02' }}
+            />
+          )}
+        </div>
         <h3 className={`${styles.eventItemData} ${styles.eventName}`}>
           {event.name}
         </h3>
