@@ -30,7 +30,11 @@ export default function EventItemHeader({ event }) {
       <p className={styles.eventItemData}>
         {formattedDate} @ {formattedTime}
       </p>
-      <p className={styles.eventItemData}></p>
+      <p className={styles.eventItemData}>
+        {event.attendingList.length === event.maxAttending
+          ? 'FULL'
+          : `${event.attendingList.length} / ${event.maxAttending} attending`}
+      </p>
     </>
   );
 }

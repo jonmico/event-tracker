@@ -61,7 +61,7 @@ export default function CreateEventForm() {
       date,
       time,
       location: { name: location },
-      maxAttendees: maxAttendees ? maxAttendees : 40,
+      maxAttending: maxAttendees ? maxAttendees : 40,
       keywords,
       isWaitlist,
       maxWaitlist: maxWaitlist ? maxWaitlist : undefined,
