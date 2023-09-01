@@ -52,9 +52,9 @@ export default function CreateEventForm() {
 
     if (!name || !date || !time || !keywords || !location) return;
 
-    if (keywords === 'all') {
-      setKeywords(['children', 'teen', 'adult']);
-    }
+    // if (keywords === 'all') {
+    //   setKeywords(['children', 'teen', 'adult']);
+    // }
 
     const newEvent = {
       name,
@@ -62,7 +62,7 @@ export default function CreateEventForm() {
       time,
       location: { name: location },
       maxAttending: maxAttendees ? maxAttendees : 40,
-      keywords,
+      keywords: keywords === 'all' ? ['children', 'teen', 'adult'] : keywords,
       isWaitlist,
       maxWaitlist: maxWaitlist ? maxWaitlist : undefined,
       author: '64ee41e4da7b253fa7473834',
