@@ -1,16 +1,8 @@
 import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCaretRight,
-  faCaretDown,
-  faPlus,
-  faMinus,
-} from '@fortawesome/free-solid-svg-icons';
-import styles from './EventItem.module.css';
 
-// TODO: Work on dropdown button. Find out how to not mess up the layout
-// Consider getting rid of goofy Name, Location, Date header and adding
-// filter options below the Events Nav on the left?
+import DropdownIcon from '../DropdownIcon/DropdownIcon';
+
+import styles from './EventItem.module.css';
 
 export default function EventItem({ event }) {
   const [isDroppedDown, setIsDroppedDown] = useState(false);
@@ -28,21 +20,7 @@ export default function EventItem({ event }) {
       className={`${styles.listItem} ${isDroppedDown ? styles.selected : ''}`}
     >
       <div className={styles.eventItem}>
-        <div className={styles.dropDownIcon}>
-          {!isDroppedDown ? (
-            <FontAwesomeIcon
-              icon={faPlus}
-              // size={'sm'}
-              // style={{ color: '#180f02' }}
-            />
-          ) : (
-            <FontAwesomeIcon
-              icon={faMinus}
-              // size='sm'
-              // style={{ color: '#180f02' }}
-            />
-          )}
-        </div>
+        <DropdownIcon isDroppedDown={isDroppedDown} />
         <h3 className={`${styles.eventItemData} ${styles.eventName}`}>
           {event.name}
         </h3>

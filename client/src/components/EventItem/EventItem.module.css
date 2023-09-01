@@ -2,15 +2,16 @@
   border-radius: 10px;
   border: 2px solid transparent;
   margin-top: 0.5rem;
-  padding: 0.5rem 0;
-}
-
-.listItem:nth-of-type(2n) {
+  padding: 0.75rem 0;
   background-color: var(--secondary);
 }
 
+/* .listItem:nth-of-type(2n) {
+  background-color: var(--secondary);
+} */
+
 .listItem:hover {
-  border: 2px solid var(--text);
+  border: 2px solid var(--primary);
   cursor: pointer;
   background-color: var(--accent);
   color: var(--background);
@@ -36,10 +37,6 @@
   flex-wrap: wrap;
   margin-top: 0.5rem;
   padding: 1rem;
-}
-
-.dropDownIcon {
-  margin-left: 1rem;
 }
 
 .selected {
