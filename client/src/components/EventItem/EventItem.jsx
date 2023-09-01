@@ -9,11 +9,6 @@ import styles from './EventItem.module.css';
 export default function EventItem({ event }) {
   const [isDroppedDown, setIsDroppedDown] = useState(false);
 
-  const { name, location, date: eventDate } = event;
-
-  const isoString = eventDate;
-  const date = new Date(isoString);
-
   function handleClick() {
     setIsDroppedDown((prev) => !prev);
   }
@@ -25,7 +20,7 @@ export default function EventItem({ event }) {
     >
       <div className={styles.eventItem}>
         <DropdownIcon isDroppedDown={isDroppedDown} />
-        <EventItemHeader name={name} location={location} date={date} />
+        <EventItemHeader event={event} />
       </div>
       {isDroppedDown && <EventItemDropdown event={event} />}
     </li>
