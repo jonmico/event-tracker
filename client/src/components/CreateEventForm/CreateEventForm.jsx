@@ -56,6 +56,7 @@ export default function CreateEventForm() {
     //   setKeywords(['children', 'teen', 'adult']);
     // }
 
+    // TODO: Once auth is finished, change the author to be whoever makes the event.
     const newEvent = {
       name,
       date,
