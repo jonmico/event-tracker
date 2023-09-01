@@ -6,10 +6,6 @@
   background-color: var(--secondary);
 }
 
-/* .listItem:nth-of-type(2n) {
-  background-color: var(--secondary);
-} */
-
 .listItem:hover {
   border: 2px solid var(--primary);
   cursor: pointer;
@@ -24,16 +20,6 @@
   position: relative;
 }
 
-.dropDownData {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-  padding: 1rem;
-}
-
 .selected {
   background-color: var(--primary);
-  /* color: var(--background); */
 }

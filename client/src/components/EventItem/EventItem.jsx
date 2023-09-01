@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import DropdownIcon from '../DropdownIcon/DropdownIcon';
 import EventItemHeader from '../EventItemHeader/EventItemHeader';
+import EventItemDropdown from '../EventItemDropdown/EventItemDropdown';
 
 import styles from './EventItem.module.css';
 
@@ -26,18 +27,7 @@ export default function EventItem({ event }) {
         <DropdownIcon isDroppedDown={isDroppedDown} />
         <EventItemHeader name={name} location={location} date={date} />
       </div>
-      {isDroppedDown && (
-        <div className={styles.dropDownData}>
-          <div>
-            <h4>Author</h4>
-            <p>{event.author.firstName}</p>
-          </div>
-          <div>
-            <h4>Time</h4>
-            <p>{event.time}</p>
-          </div>
-        </div>
-      )}
+      {isDroppedDown && <EventItemDropdown event={event} />}
     </li>
   );
 }
