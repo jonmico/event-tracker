@@ -24,12 +24,6 @@
   position: relative;
 }
 
-.eventItemData {
-  width: 100%;
-  text-align: center;
-  flex-wrap: wrap;
-}
-
 .dropDownData {
   display: flex;
   align-items: center;

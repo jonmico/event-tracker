@@ -1,10 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCaretRight,
-  faCaretDown,
-  faPlus,
-  faMinus,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCaretRight, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './DropdownIcon.module.css';
 

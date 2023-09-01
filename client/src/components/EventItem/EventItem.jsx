@@ -1,13 +1,16 @@
 import { useState } from 'react';
 
 import DropdownIcon from '../DropdownIcon/DropdownIcon';
+import EventItemHeader from '../EventItemHeader/EventItemHeader';
 
 import styles from './EventItem.module.css';
 
 export default function EventItem({ event }) {
   const [isDroppedDown, setIsDroppedDown] = useState(false);
 
-  const isoString = event.date;
+  const { name, location, date: eventDate } = event;
+
+  const isoString = eventDate;
   const date = new Date(isoString);
 
   function handleClick() {
@@ -21,17 +24,7 @@ export default function EventItem({ event }) {
     >
       <div className={styles.eventItem}>
         <DropdownIcon isDroppedDown={isDroppedDown} />
-        <h3 className={`${styles.eventItemData} ${styles.eventName}`}>
-          {event.name}
-        </h3>
-        <p className={styles.eventItemData}>{event.location?.name}</p>
-        <p className={styles.eventItemData}>
-          {date.toLocaleString('en-US', {
-            month: 'numeric',
-            day: 'numeric',
-            year: 'numeric',
-          })}
-        </p>
+        <EventItemHeader name={name} location={location} date={date} />
       </div>
       {isDroppedDown && (
         <div className={styles.dropDownData}>
