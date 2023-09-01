@@ -28,3 +28,5 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
+// TODO: Make page for specific events. Include a map to show location (Leaflet?).

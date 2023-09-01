@@ -29,3 +29,9 @@ const eventSchema = new Schema(
 const EventModel = mongoose.model('Event', eventSchema);
 
 export default EventModel;
+
+// TODO: Consider adding text for event. Like some sort of flavor text/description for each event.
+// Probably don't want it required for testing purposes, but it would probably help a lot for
+// specific event pages. Also, people want to know what an event is for/about.
+
+// TODO: What exactly do we want keywords to be?

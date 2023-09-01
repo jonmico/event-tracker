@@ -1,5 +1,9 @@
 import styles from './EventItemDropdown.module.css';
 
+// TODO: Iron out layout for this. Auth would probably help a lot.
+
+// TODO: Once auth is figured out, add signup link to the dropdown menu.
+
 export default function EventItemDropdown({ event }) {
   const { createdAt } = event;
 
