@@ -150,8 +150,8 @@ export default function CreateEventForm() {
           />
           {timeError && <p className={styles.error}>{timeError}</p>}
         </div>
-      </div>
-      <div className={styles.formRow}>
+        {/* </div> */}
+        {/* <div className={styles.formRow}> */}
         <div className={styles.formInputWrapper}>
           <label htmlFor='location' className={styles.label}>
             Location
