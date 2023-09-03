@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './EventItemDropdown.module.css';
 
 // TODO: Iron out layout for this. Auth would probably help a lot.
@@ -12,6 +13,7 @@ export default function EventItemDropdown({ event }) {
     day: 'numeric',
     year: 'numeric',
   });
+
   return (
     <div className={styles.dropDownData}>
       <div>
@@ -33,6 +35,11 @@ export default function EventItemDropdown({ event }) {
       <div>
         <h4>Keywords</h4>
         <p>{event.keywords.map((word) => word)}</p>
+      </div>
+      <div>
+        <Link relative={'path'} to={`../${event._id}`}>
+          {event.name} event page
+        </Link>
       </div>
     </div>
   );
