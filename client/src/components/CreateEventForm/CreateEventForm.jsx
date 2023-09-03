@@ -206,6 +206,7 @@ export default function CreateEventForm() {
           {keywordsError && <p className={styles.error}>{keywordsError}</p>}
         </div>
       </div>
+
       <div className={styles.formRow}>
         <div className={styles.checkboxWrapper}>
           <label className={styles.label} htmlFor='isWaitlist'>
@@ -235,6 +236,19 @@ export default function CreateEventForm() {
           </div>
         </div>
       )}
+      <div className={styles.textAreaRow}>
+        <div>
+          <label htmlFor='description'>Description</label>
+          <textarea
+            placeholder={'Tell us about your event!'}
+            id='description'
+            // cols='30'
+            rows='10'
+            maxLength={500}
+            className={`${styles.input} ${styles.textAreaInput}`}
+          ></textarea>
+        </div>
+      </div>
       <div>
         <Button buttonStyle={'createEventButton'}>Create Event</Button>
       </div>

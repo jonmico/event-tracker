@@ -62,3 +62,14 @@
   max-width: 250px;
   min-width: 100px;
 }
+
+.textAreaRow {
+  margin-top: 1rem;
+}
+
+.textAreaInput {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  padding: 0.5rem;
+}
