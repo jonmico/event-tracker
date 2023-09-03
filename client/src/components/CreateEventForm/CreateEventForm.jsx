@@ -1,6 +1,3 @@
-// TODO: Implement this form. Use placeholder ID for each event so we can
-// filter by author.
-
 import { useState } from 'react';
 
 import Button from '../Button/Button';
