@@ -67,6 +67,7 @@ export async function createEvent(req, res, next) {
     const newEvent = new EventModel({
       ...req.body,
       name: req.body.name.toLowerCase(),
+      location: { name: req.body.location.name.toLowerCase() },
     });
 
     await newEvent.save();
