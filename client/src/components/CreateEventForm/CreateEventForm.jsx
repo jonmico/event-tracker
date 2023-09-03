@@ -28,6 +28,8 @@ export default function CreateEventForm() {
 
   const [maxWaitlist, setMaxWaitlist] = useState('');
 
+  const [description, setDescription] = useState('');
+
   const [submitError, setSubmitError] = useState('');
 
   function clearError(stateFn) {
@@ -49,10 +51,6 @@ export default function CreateEventForm() {
 
     if (!name || !date || !time || !keywords || !location) return;
 
-    // if (keywords === 'all') {
-    //   setKeywords(['children', 'teen', 'adult']);
-    // }
-
     // TODO: Once auth is finished, change the author to be whoever makes the event.
     const newEvent = {
       name,
@@ -64,6 +62,7 @@ export default function CreateEventForm() {
       isWaitlist,
       maxWaitlist: maxWaitlist ? maxWaitlist : undefined,
       author: '64ee41e4da7b253fa7473834',
+      description,
     };
 
     console.log(newEvent);
@@ -92,6 +91,7 @@ export default function CreateEventForm() {
       setKeywords('');
       setIsWaitlist(false);
       if (maxWaitlist) setMaxWaitlist('');
+      setDescription('');
     } catch (err) {
       setSubmitError(err.message);
     }
@@ -150,8 +150,6 @@ export default function CreateEventForm() {
           />
           {timeError && <p className={styles.error}>{timeError}</p>}
         </div>
-        {/* </div> */}
-        {/* <div className={styles.formRow}> */}
         <div className={styles.formInputWrapper}>
           <label htmlFor='location' className={styles.label}>
             Location
@@ -240,9 +238,10 @@ export default function CreateEventForm() {
         <div>
           <label htmlFor='description'>Description</label>
           <textarea
+            value={description}
+            onChange={(evt) => setDescription(evt.target.value)}
             placeholder={'Tell us about your event!'}
             id='description'
-            // cols='30'
             rows='10'
             maxLength={500}
             className={`${styles.input} ${styles.textAreaInput}`}
