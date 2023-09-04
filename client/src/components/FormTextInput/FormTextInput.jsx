@@ -26,7 +26,7 @@ export default function FormTextInput({
         onFocus={clearError}
         className={`${styles.input} ${error ? styles.inputError : ''}`}
         id={forId}
-        type='text'
+        type={`${label === 'Password' ? 'password' : 'text'}`}
         value={state}
         onChange={handleChange}
       />
