@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 
 import eventsRouter from './routes/events.js';
@@ -12,6 +13,7 @@ const PORT = process.env.PORT ?? 3000;
 const CONNECTION = process.env.MONGOOSE_CONNECTION_STRING;
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors());
 
 app.use('/api/events', eventsRouter);

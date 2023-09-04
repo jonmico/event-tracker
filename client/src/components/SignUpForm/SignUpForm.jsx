@@ -20,27 +20,35 @@ export default function SignUpForm() {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
 
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
   const [organization, setOrganization] = useState('');
 
   const [submitError, setSubmitError] = useState('');
 
   async function handleSubmit(evt) {
     evt.preventDefault();
+
     if (submitError) setSubmitError('');
+
     if (!firstName) setFirstNameError('Required field.');
 
     if (!lastName) setLastNameError('Required field.');
 
     if (!email) setEmailError('Required field.');
 
+    if (!password) setPasswordError('Required field');
+
     if (!phone) setPhoneError('Required field.');
 
-    if (!firstName || !lastName || !email || !phone) return;
+    if (!firstName || !lastName || !email || !phone || !password) return;
 
     const newUser = {
       firstName,
       lastName,
       email,
+      password,
       phone,
       organization: organization ? organization : undefined,
     };
@@ -98,6 +106,14 @@ export default function SignUpForm() {
         setState={setEmail}
         error={emailError}
         setError={setEmailError}
+      />
+      <FormTextInput
+        forId={'password'}
+        label={'Password'}
+        state={password}
+        setState={setPassword}
+        error={passwordError}
+        setError={setPasswordError}
       />
       <FormTextInput
         forId={'phone'}
