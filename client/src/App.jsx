@@ -10,10 +10,12 @@ import Events from './pages/Events/Events';
 
 import CreateEventForm from './components/CreateEventForm/CreateEventForm';
 import EventList, {
-  loader as EventListLoader,
+  loader as eventListLoader,
 } from './components/EventList/EventList';
 
-import EventDetail from './components/EventDetail/EventDetail';
+import EventDetail, {
+  loader as eventDetailLoader,
+} from './components/EventDetail/EventDetail';
 import AppLayout from './pages/AppLayout/AppLayout';
 
 const router = createBrowserRouter([
@@ -40,7 +42,7 @@ const router = createBrowserRouter([
           {
             path: 'browse',
             element: <EventList />,
-            loader: EventListLoader,
+            loader: eventListLoader,
           },
 
           {
@@ -50,6 +52,7 @@ const router = createBrowserRouter([
           {
             path: ':id',
             element: <EventDetail />,
+            loader: eventDetailLoader,
           },
         ],
       },

@@ -9,7 +9,21 @@ export async function getEvents() {
   if (!res.ok) {
     throw new Error(`Something went wrong: ${res.status} error.`);
   }
-  return await res.json();
+  const data = await res.json();
+
+  return data;
+}
+
+export async function getEvent(id) {
+  const res = await fetch(`/api/events/${id}`);
+
+  if (!res.ok) {
+    throw new Error(`Something went wrong: ${res.status} error.`);
+  }
+
+  const data = await res.json();
+
+  return data;
 }
 
 export async function createEvent(event) {
@@ -25,5 +39,7 @@ export async function createEvent(event) {
     throw new Error(`Oops! Request failed with status code: ${res.status}`);
   }
 
-  return await res.json();
+  const data = await res.json();
+
+  return data;
 }
