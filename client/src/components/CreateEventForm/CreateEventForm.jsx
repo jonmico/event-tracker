@@ -6,6 +6,8 @@ import styles from './CreateEventForm.module.css';
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
+// TODO: Make vanilla form. Move over to an action.
+
 export default function CreateEventForm() {
   const [name, setName] = useState('');
   const [nameError, setNameError] = useState('');

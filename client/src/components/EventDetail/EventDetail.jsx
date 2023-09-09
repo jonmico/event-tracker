@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 
 // import styles from './EventDetail.module.css';
+
+// TODO: Switch EventDetail over to loader.
 import { useEffect, useState } from 'react';
 
 export default function EventDetail() {

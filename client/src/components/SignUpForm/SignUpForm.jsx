@@ -5,7 +5,7 @@ import FormTextInput from '../FormTextInput/FormTextInput';
 
 import styles from './SignUpForm.module.css';
 
-const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
+// TODO: Move this whole form over to vanilla form and use an action.
 
 export default function SignUpForm() {
   const [firstName, setFirstName] = useState('');
@@ -54,7 +54,7 @@ export default function SignUpForm() {
     };
 
     try {
-      const res = await fetch(`${BASE_URL}/api/user`, {
+      const res = await fetch('/api/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

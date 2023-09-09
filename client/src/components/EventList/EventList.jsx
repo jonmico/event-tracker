@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import EventItem from '../EventItem/EventItem';
 
@@ -10,6 +10,8 @@ export async function loader() {
   return await getEvents();
 }
 
+// TODO: Figure out what to do with isLoading and eventListError.
+// Custom error element in App?
 export default function EventList() {
   // const [eventList, setEventList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
