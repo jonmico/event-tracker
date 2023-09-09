@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Button from '../Button/Button';
 
 import styles from './CreateEventForm.module.css';
+import { createEvent } from '../../services/apiEvents';
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
@@ -67,22 +68,21 @@ export default function CreateEventForm() {
       description,
     };
 
-    console.log(newEvent);
-
     try {
-      const res = await fetch(`${BASE_URL}/api/events`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newEvent),
-      });
+      //   const res = await fetch(`${BASE_URL}/api/events`, {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify(newEvent),
+      //   });
 
-      if (!res.ok) {
-        throw new Error(`Oops! Request failed with status code: ${res.status}`);
-      }
+      //   if (!res.ok) {
+      //     throw new Error(`Oops! Request failed with status code: ${res.status}`);
+      //   }
 
-      const data = await res.json();
+      //   const data = await res.json();
+      const data = await createEvent(newEvent);
       console.log(data);
 
       setName('');

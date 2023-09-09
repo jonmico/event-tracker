@@ -9,7 +9,21 @@ export async function getEvents() {
   if (!res.ok) {
     throw new Error(`Something went wrong: ${res.status} error.`);
   }
-  const data = await res.json();
+  return await res.json();
+}
 
-  return data;
+export async function createEvent(event) {
+  const res = await fetch('/api/events', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(event),
+  });
+
+  if (!res.ok) {
+    throw new Error(`Oops! Request failed with status code: ${res.status}`);
+  }
+
+  return await res.json();
 }
