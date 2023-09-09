@@ -1,10 +1,9 @@
-import AppError from '../AppError.js';
 import EventModel from '../models/event.js';
 import UserModel from '../models/user.js';
 
 export async function getEvents(req, res, next) {
   try {
-    const events = await EventModel.find({}).populate('author').exec();
+    const events = await EventModel.find().populate('author').exec();
     res.json(events);
   } catch (err) {
     next(err);
@@ -15,7 +14,9 @@ export async function getEvent(req, res, next) {
   try {
     const { id } = req.params;
     const event = await EventModel.findById(id).exec();
-    if (!event) throw new AppError(404, 'Event not found.');
+    if (!event) {
+      res.status(404).json({ message: 'Event not found.' });
+    }
 
     res.json(event);
   } catch (err) {
@@ -31,7 +32,9 @@ export async function filterEvents(req, res, next) {
     if (name) {
       const events = await EventModel.find({ name: { $regex: name } });
 
-      if (!events) throw new AppError(404, 'No events found.');
+      if (!events) {
+        res.status(404).json({ message: 'No events found.' });
+      }
 
       res.json(events);
     }
@@ -39,7 +42,9 @@ export async function filterEvents(req, res, next) {
     if (keywords) {
       const events = await EventModel.find({ keywords: keywords });
 
-      if (!events) throw new AppError(404, 'No events found.');
+      if (!events) {
+        res.status(404).json({ message: 'No events found.' });
+      }
 
       res.json(events);
     }
@@ -64,13 +69,12 @@ export async function filterEvents(req, res, next) {
 
 export async function createEvent(req, res, next) {
   try {
-    const newEvent = new EventModel({
+    const newEvent = await EventModel.create({
       ...req.body,
       name: req.body.name.toLowerCase(),
       location: { name: req.body.location.name.toLowerCase() },
     });
 
-    await newEvent.save();
     res.status(201).json(newEvent);
   } catch (err) {
     next(err);
@@ -88,7 +92,9 @@ export async function editEvent(req, res, next) {
       }
     ).exec();
 
-    if (!event) throw new AppError(404, 'Event not found');
+    if (!event) {
+      res.status(404).json({ message: 'Event not found.' });
+    }
 
     res.json(event);
   } catch (err) {
@@ -101,7 +107,9 @@ export async function deleteEvent(req, res, next) {
     const { id } = req.params;
     const deletedEvent = await EventModel.findByIdAndDelete(id);
 
-    if (!deletedEvent) throw new AppError(404, 'Event not found.');
+    if (!deletedEvent) {
+      res.status(404).json({ message: 'Event not found.' });
+    }
 
     res.status(204).json({});
   } catch (err) {
@@ -114,34 +122,34 @@ export async function addUserToEvent(req, res, next) {
     const { eventId, userId } = req.params;
     const event = await EventModel.findById(eventId).exec();
 
-    if (!event) throw new AppError(404, 'Event not found.');
+    if (!event) {
+      res.status(404).json({ message: 'Event not found.' });
+    }
 
     //check if user is in list
     if (
       event.attendingList.includes(userId) ||
       event.waitlist.includes(userId)
     ) {
-      throw new AppError(
-        409,
-        'This User ID is already signed up for the attendingList or waitlist.'
-      );
+      res.status(409).json({
+        message:
+          'This User ID is already signed up for the attending list or waitlist.',
+      });
     }
 
     //check is attendingList is full
     if (event.attendingList.length === event.maxAttending) {
       //check if event allows waitlists
       if (!event.isWaitlist) {
-        throw new AppError(
-          403,
-          'This event is full and does not allow waitlists.'
-        );
+        res.status(403).json({
+          message: 'This event is full and does not allow waitlists.',
+        });
       }
       //check if waitlist is full
       if (event.waitlist.length === event.maxWaitlist) {
-        throw new AppError(
-          403,
-          'Both the attendingList and waitlist are full.'
-        );
+        res
+          .status(403)
+          .json({ message: 'Both the attending list and waitlist are full' });
       }
       //if waitlist is not full, push onto waitlist
       event.waitlist.push(userId);
@@ -173,16 +181,17 @@ export async function removeUserFromEvent(req, res, next) {
     const { eventId, userId } = req.params;
     const event = await EventModel.findById(eventId).exec();
 
-    if (!event) throw new AppError(404, 'Event not found.');
+    if (!event) {
+      res.status(404).json({ message: 'Event not found.' });
+    }
 
     if (
       !event.attendingList.includes(userId) &&
       !event.waitlist.includes(userId)
     ) {
-      throw new AppError(
-        404,
-        'User is not registered for this event or does not exist.'
-      );
+      res.status(404).json({
+        message: 'User is not registered for this event or does not exist.',
+      });
     }
 
     //check which list the user is on and pull user out
@@ -203,7 +212,9 @@ export async function removeUserFromEvent(req, res, next) {
 
     const user = await UserModel.findById(userId).exec();
 
-    if (!user) throw new AppError(404, 'User not found.');
+    if (!user) {
+      res.status(404).json({ message: 'User not found.' });
+    }
 
     //check which list user has the event on, pull event out
     if (user.attendingEvents.includes(eventId)) {
