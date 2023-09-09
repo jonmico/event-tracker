@@ -49,8 +49,7 @@ export async function filterEvents(req, res, next) {
       res.json(events);
     }
 
-    // TODO:
-    // find different ways to filter events. add option to filter events
+    // TODO: Find different ways to filter events. add option to filter events
     // by alphabetical order, by date etc. make it so you can pull events
     // on front end and filter those on the front end, but also pull
     // events with the filter already applied.

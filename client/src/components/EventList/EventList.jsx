@@ -11,7 +11,7 @@ export async function loader() {
 }
 
 // TODO: Figure out what to do with isLoading and eventListError.
-// Custom error element in App?
+// Custom error element and loading (navigation.state) in App?
 export default function EventList() {
   // const [eventList, setEventList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
