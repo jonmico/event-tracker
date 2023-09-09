@@ -1,5 +1,3 @@
-// TODO: Add the rest of the API calls.
-
 export async function getEvents() {
   const res = await fetch('/api/events', {
     method: 'GET',
