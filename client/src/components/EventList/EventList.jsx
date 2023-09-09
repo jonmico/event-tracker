@@ -15,7 +15,7 @@ export default function EventList() {
     async function fetchEvents() {
       try {
         setIsLoading(true);
-        const res = await fetch(`${BASE_URL}/api/events`, {
+        const res = await fetch('http://localhost:3000/api/events', {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
         });
