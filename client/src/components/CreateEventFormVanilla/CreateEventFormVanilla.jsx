@@ -8,6 +8,21 @@ import { Form } from 'react-router-dom';
 
 // TODO: Make vanilla form. Move over to an action.
 
+export async function action({ request }) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  console.log(data);
+
+  const res = await createEvent({
+    ...data,
+    author: '64ee41e4da7b253fa7473834',
+    waitlist: data.waitlist === 'on',
+  });
+
+  console.log(res);
+  return null;
+}
+
 export default function CreateEventFormVanilla() {
   const [isWaitlist, setIsWaitlist] = useState(false);
   return (
@@ -19,25 +34,48 @@ export default function CreateEventFormVanilla() {
           <label className={styles.label} htmlFor='name'>
             Event Name
           </label>
-          <input className={styles.input} type='text' id={'name'} required />
+          <input
+            className={styles.input}
+            type='text'
+            id={'name'}
+            name={'name'}
+            required
+          />
         </div>
         <div className={styles.formInputWrapper}>
           <label className={styles.label} htmlFor='date'>
             Date
           </label>
-          <input className={styles.input} type='date' id={'date'} required />
+          <input
+            className={styles.input}
+            type='date'
+            id={'date'}
+            name={'date'}
+            required
+          />
         </div>
         <div className={styles.formInputWrapper}>
           <label className={styles.label} htmlFor='time'>
             Time
           </label>
-          <input className={styles.input} type='time' id={'time'} required />
+          <input
+            className={styles.input}
+            type='time'
+            id={'time'}
+            name={'time'}
+            required
+          />
         </div>
         <div className={styles.formInputWrapper}>
           <label htmlFor='location' className={styles.label}>
             Location
           </label>
-          <input type='text' className={styles.input} required />
+          <input
+            type='text'
+            className={styles.input}
+            name={'location'}
+            required
+          />
         </div>
         <div className={styles.formInputWrapper}>
           <label className={styles.label} htmlFor='maxAttending'>
@@ -48,13 +86,19 @@ export default function CreateEventFormVanilla() {
             className={styles.input}
             type='text'
             id={'maxAttending'}
+            name={'maxAttending'}
           />
         </div>
         <div className={styles.formInputWrapper}>
           <label className={styles.label} htmlFor='keywords'>
             Keywords
           </label>
-          <select className={styles.input} id='keywords' required>
+          <select
+            name={'keywords'}
+            className={styles.input}
+            id='keywords'
+            required
+          >
             <option value=''>Select</option>
             <option value='children'>Children</option>
             <option value='teen'>Teen</option>
@@ -75,6 +119,7 @@ export default function CreateEventFormVanilla() {
             className={styles.checkbox}
             type='checkbox'
             id={'isWaitlist'}
+            name={'isWaitlist'}
           />
         </div>
       </div>
@@ -87,6 +132,7 @@ export default function CreateEventFormVanilla() {
               type='text'
               className={styles.input}
               id={'maxWaitlist'}
+              name={'maxWaitlist'}
             />
           </div>
         </div>
@@ -101,6 +147,7 @@ export default function CreateEventFormVanilla() {
             maxLength={500}
             className={`${styles.input} ${styles.textAreaInput}`}
             required
+            name={'description'}
           ></textarea>
         </div>
       </div>
