@@ -48,7 +48,7 @@ const router = createBrowserRouter([
 
           {
             path: 'create',
-            element: <CreateEventFormVanilla />,
+            element: <CreateEventForm />,
           },
           {
             path: ':id',
