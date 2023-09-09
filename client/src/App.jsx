@@ -17,6 +17,7 @@ import EventDetail, {
   loader as eventDetailLoader,
 } from './components/EventDetail/EventDetail';
 import AppLayout from './pages/AppLayout/AppLayout';
+import CreateEventFormVanilla from './components/CreateEventFormVanilla/CreateEventFormVanilla';
 
 const router = createBrowserRouter([
   {
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
 
           {
             path: 'create',
-            element: <CreateEventForm />,
+            element: <CreateEventFormVanilla />,
           },
           {
             path: ':id',

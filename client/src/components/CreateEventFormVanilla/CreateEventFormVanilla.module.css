@@ -1,0 +1,75 @@
+.createEventForm {
+  width: 100%;
+}
+
+.title {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--accent);
+}
+
+.label {
+  font-size: 1rem;
+}
+
+.input {
+  margin-top: 2px;
+  height: 2rem;
+  font-size: 1rem;
+  border: 1px solid var(--text);
+  border-radius: 5px;
+  padding: 0 6px;
+  outline: 1px solid transparent;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: 1px solid var(--accent);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.error {
+  color: var(--error);
+  font-size: 0.75rem;
+  margin-top: 2px;
+}
+
+.inputError {
+  border: 1px solid var(--error);
+}
+
+.formRow {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.checkbox {
+  height: 25px;
+  width: 25px;
+}
+
+.formInputWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 250px;
+  min-width: 100px;
+}
+
+.textAreaRow {
+  margin-top: 1rem;
+}
+
+.textAreaInput {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  padding: 0.5rem;
+}
