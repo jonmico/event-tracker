@@ -1,7 +1,4 @@
 import {
-  BrowserRouter,
-  Routes,
-  Route,
   Navigate,
   createBrowserRouter,
   RouterProvider,
@@ -13,8 +10,7 @@ import Events from './pages/Events/Events';
 
 import CreateEventForm from './components/CreateEventForm/CreateEventForm';
 import EventList from './components/EventList/EventList';
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
+
 import EventDetail from './components/EventDetail/EventDetail';
 import AppLayout from './pages/AppLayout/AppLayout';
 
@@ -59,25 +55,7 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  return (
-    <RouterProvider router={router} />
-    // <BrowserRouter>
-    //   <div className={'appWrapper'}>
-    //     <Navbar />
-    //     <Routes>
-    //       <Route index element={<Index />} />
-    //       <Route element={<SignUp />} path={'signup'} />
-    //       <Route element={<Events />} path={'events'}>
-    //         <Route index element={<Navigate replace to={'browse'} />} />
-    //         <Route element={<CreateEventForm />} path={'create'} />
-    //         <Route element={<EventList />} path={'browse'} />
-    //         <Route element={<EventDetail />} path={':id'} />
-    //       </Route>
-    //     </Routes>
-    //     <Footer />
-    //   </div>
-    // </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
 
 // TODO: Make page for specific events. Include a map to show location (Leaflet?).

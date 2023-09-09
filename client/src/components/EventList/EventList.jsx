@@ -4,8 +4,6 @@ import EventItem from '../EventItem/EventItem';
 
 import styles from './EventList.module.css';
 
-const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
-
 export default function EventList() {
   const [eventList, setEventList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +13,7 @@ export default function EventList() {
     async function fetchEvents() {
       try {
         setIsLoading(true);
-        const res = await fetch('http://localhost:3000/api/events', {
+        const res = await fetch('/api/events', {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
         });
