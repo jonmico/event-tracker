@@ -3,34 +3,34 @@ import { useState, useEffect } from 'react';
 import EventItem from '../EventItem/EventItem';
 
 import styles from './EventList.module.css';
+import { getEvents } from '../../services/apiEvents';
+import { useLoaderData } from 'react-router-dom';
+
+export async function loader() {
+  return await getEvents();
+}
 
 export default function EventList() {
-  const [eventList, setEventList] = useState([]);
+  // const [eventList, setEventList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [eventListError, setEventListError] = useState('');
 
-  useEffect(() => {
-    async function fetchEvents() {
-      try {
-        setIsLoading(true);
-        const res = await fetch('/api/events', {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-        });
+  const eventList = useLoaderData();
 
-        if (!res.ok) {
-          throw new Error(`Something went wrong: ${res.status} error.`);
-        }
-        const data = await res.json();
-        setEventList(data);
-      } catch (err) {
-        setEventListError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchEvents();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchEvents() {
+  //     try {
+  //       setIsLoading(true);
+  //       const events = await getEvents();
+  //       setEventList(events);
+  //     } catch (err) {
+  //       setEventListError(err.message);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   }
+  //   fetchEvents();
+  // }, []);
 
   const list = eventList.length ? (
     <ul className={styles.eventList}>

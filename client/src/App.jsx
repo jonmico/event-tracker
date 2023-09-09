@@ -9,7 +9,9 @@ import SignUp from './pages/SignUp/SignUp';
 import Events from './pages/Events/Events';
 
 import CreateEventForm from './components/CreateEventForm/CreateEventForm';
-import EventList from './components/EventList/EventList';
+import EventList, {
+  loader as EventListLoader,
+} from './components/EventList/EventList';
 
 import EventDetail from './components/EventDetail/EventDetail';
 import AppLayout from './pages/AppLayout/AppLayout';
@@ -38,6 +40,7 @@ const router = createBrowserRouter([
           {
             path: 'browse',
             element: <EventList />,
+            loader: EventListLoader,
           },
 
           {
